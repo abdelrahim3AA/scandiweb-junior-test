@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
         }
     });
+    git remote add origin https://github.com/abdelrahim3AA/scandiweb-product-management.git
 
     // Handle form submission with fetch API
     saveBtn.addEventListener('click', async function (event) {
