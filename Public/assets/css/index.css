@@ -1,0 +1,151 @@
+/* General reset and font settings */
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding-top: 80px; /* Account for the fixed header */
+    padding-bottom: 60px; /* Prevent content from being hidden behind the footer */
+    margin: 0; /* Remove body margin */
+}
+
+/* Fixed header section styling */
+.header-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 17px 80px;
+    background-color: #f4f4f4f4;
+    border-bottom: 1px solid #ddd;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;    
+    margin-bottom: 30px; /* Small margin between header and separator */
+}
+
+.header-buttons button {
+    padding: 13px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.header-buttons button:hover {
+    background-color: #218838;
+}
+
+.header-buttons button.mass-delete {
+    background-color: #dc3545;
+}
+
+.header-buttons button.mass-delete:hover {
+    background-color: #c82333;
+}
+
+/* Separator styling */
+.separator {
+    border-top: 1px solid #9c9c9c;
+    width: 90%; /* Adjust width for consistent alignment */
+    margin: 10px auto 20px auto; /* Horizontal centering, bottom margin for spacing */
+}
+
+/* Grid layout for product list */
+.cart-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Set four columns in the grid */
+    gap: 20px; /* Space between grid items */
+    justify-items: center; /* Center items in their grid cell */
+    margin-bottom: 20px; /* Add bottom margin */
+    width: 90%; /* Align with separator */
+    margin: 0 auto; /* Center grid horizontally */
+    margin-top: 10px; /* Small space between separator and products */
+}
+
+/* Product item styling */
+.product-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 30px 40px; /* Adjusted padding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    background-color: white;
+    transition: box-shadow 0.3s ease;
+    width: 300px; 
+}
+
+.product-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-item input[type="checkbox"] {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 15px;
+    height: 15px;
+    transform: scale(1.5); /* Scale up the checkbox */
+    cursor: pointer;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-details span {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Footer styling */
+.footer_word {
+    text-align: center;
+    padding: 15px;
+    color: #333;
+    background-color: #f4f4f4;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Footer separator with consistent margin */
+.footer_word .separatorFooter {
+    border-top: 1px solid #9c9c9c;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: -15px; /* Slight adjustment for better spacing */
+    margin-bottom: 10px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .header-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-buttons button {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .cart-list {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+}

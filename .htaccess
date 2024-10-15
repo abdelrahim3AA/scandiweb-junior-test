@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /scandiweb_test/
+
+    # Exclude existing files and directories
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Forward everything to index.php
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>

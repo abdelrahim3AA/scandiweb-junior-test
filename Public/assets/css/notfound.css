@@ -1,0 +1,80 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #121629; /* كحلي غامق - Dark navy blue */
+    color: #fff; /* White text for dark mode */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Error container styling */
+.error-container {
+    background-color: #121629; /* Slightly lighter navy blue for container */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Soft shadow */
+    max-width: 800px;
+    width: 90%;
+}
+
+.error-container h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ff4c4c; /* Highlight color for the title */
+}
+
+.error-container p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #b8b8b8; /* Slightly dimmed white for paragraph */
+    
+}
+.details {
+    text-align: left;
+}
+
+.error-container code {
+    background-color: #333;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: #ff4c4c; /* Code block highlight color */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    display: inline; /* Ensures the path stays on one line */
+    white-space: nowrap; /* Prevents line breaks in the path */
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff4c4c; /* Red color similar to Laravel */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #d63e3e; /* Darker red on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .error-container h1 {
+        font-size: 36px;
+    }
+    
+    .error-container p {
+        font-size: 14px;
+    }
+}
