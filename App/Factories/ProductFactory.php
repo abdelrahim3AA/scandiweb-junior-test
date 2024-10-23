@@ -51,4 +51,6 @@ class ProductFactory {
         // Use reflection to pass data dynamically
         return new $productClasses[$productType](...$requiredData);
     }
+    
+    
 }
