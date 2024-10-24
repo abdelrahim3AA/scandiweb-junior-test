@@ -6,6 +6,7 @@ use App\Controllers\Controller;
 use App\Factories\ProductFactory;
 use App\Models\Product;
 use Exception;
+use App\Core\Database;
 
 class ProductController extends Controller
 {
@@ -74,7 +75,7 @@ class ProductController extends Controller
             }
 
             // Redirect back to the product list with a success message
-            header('Location: http://localhost/scandiweb_test/');
+            header('Location: http://scandiweb-dev.byethost18.com/');
             exit();
         } else {
             // Handle case where no products are selected
