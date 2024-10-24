@@ -52,5 +52,5 @@ class ProductFactory {
         return new $productClasses[$productType](...$requiredData);
     }
     
-    
+
 }
