@@ -11,7 +11,7 @@
     <div class="error-container">
         <h1>404 | Page Not Found</h1>
         <p>It looks like the page you're looking for does not exist.</p>
-        <a href='http://localhost/scandiweb_test/' class="back-button">Back to Home</a>
+        <a href="<?= BASE_URL ?>" class="back-button">Back to Home</a>
     </div>
 
 </body>
