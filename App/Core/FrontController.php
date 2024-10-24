@@ -1,58 +1,77 @@
 <?php
 
-namespace App\Core; 
+namespace App\Core;
 
-class FrontController {
-    
-    public const NOT_FOUND_ACTION     = "NotFoundAction";
+class FrontController
+{
+    public const NOT_FOUND_ACTION     = "notFoundAction";
     public const NOT_FOUND_CONTROLLER = "App\Controllers\NotfoundController";
 
-    private $_controller = 'product'; 
-    private $_action = 'index'; 
-    private $_params = []; 
+    private $_controller = 'product';
+    private $_action = 'index';
+    private $_params = [];
 
-    public function __construct() {
-        $this->_parseUrl(); 
+    public function __construct()
+    {
+        $this->_parseUrl();
     }
-    private function _parseUrl() {
 
+    /**
+     * Parse the request URL to determine the controller, action, and parameters.
+     */
+    private function _parseUrl()
+    {
         $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        $url = str_replace('scandiweb_test/', '', strtolower($url)); 
-        $url = trim($url, '/');
-        $url = explode('/', $url, 3);
 
-        
-        if ($url[0] === 'add-product' || $url[0] === 'addproduct') {
+        // Adjust the base folder if needed
+        $base_url = 'http://scandiweb-dev.byethost18.com/';
+        $url = str_replace($base_url, '', strtolower($url)); 
+        $url = trim($url, '/');  // Remove leading and trailing slashes
+
+        $segments = explode('/', $url);
+
+        // Determine the controller
+        $this->_controller = !empty($segments[0]) ? $segments[0] : $this->_controller;
+
+        // Determine the action
+        $this->_action = !empty($segments[1]) ? $segments[1] : $this->_action;
+
+        // Store any additional parameters
+        $this->_params = array_slice($segments, 2);
+
+        // Handle special case for "add-product" routes
+        if (in_array($segments[0], ['add-product', 'addproduct'])) {
             $this->_controller = 'product';
-            $this->_action = 'addProduct';
+            $this->_action = 'addproduct';
         }
-        if(isset($url[1]) && $url[1] != '') {
-            $this->_action = $url[1]; 
-        }
-
-        if(isset($url[2]) && $url[2] != '') {
-            $this->_params = explode('/', $url[2]); 
-        }
-
     }
 
-    public function _dispatch() {
+    /**
+     * Dispatch the request to the appropriate controller and action.
+     */
+    public function _dispatch()
+    {
+        $controllerClassName = 'App\Controllers\\' . ucfirst($this->_controller) . 'Controller';
+        $actionName = $this->_action . 'Action';
         
-        $controllerClassName = 'App\Controllers\\' . ucfirst($this->_controller) . "Controller";
-        $actionName = $this->_action . "Action"; 
-        if(!class_exists($controllerClassName)) { 
-            $controllerClassName = self::NOT_FOUND_CONTROLLER; 
-        }
-        $controller = new $controllerClassName(); 
-        
-        if(!method_exists($controller, $actionName)) {
-            $this->_action = $actionName = self::NOT_FOUND_ACTION; 
+        // Use the NotFoundController if the requested controller doesn't exist
+        if (!class_exists($controllerClassName)) {
+            $controllerClassName = self::NOT_FOUND_CONTROLLER;
         }
 
-        $controller->setController($this->_controller); 
-        $controller->setAction($this->_action); 
-        $controller->setParams($this->_params); 
+        $controller = new $controllerClassName();
+
+        // Use the NotFoundAction if the requested action doesn't exist
+        if (!method_exists($controller, $actionName)) {
+            $actionName = self::NOT_FOUND_ACTION;
+        }
+
+        // Set controller, action, and parameters
+        $controller->setController($this->_controller);
+        $controller->setAction($this->_action);
+        $controller->setParams($this->_params);
+
+        // Call the action method
         $controller->$actionName();
     }
 }
-
