@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
-    <link rel="stylesheet" href="<?= PUBLIC_PATH . DS ?>assets/css/index.css">
+    <link rel="stylesheet" href="<?= PUBLIC_PATH ?>assets/css/index.css">
 </head>
 <body>
 
@@ -15,8 +14,8 @@
             <h2>Product List</h2>
         </div>
         <div>
-           <a href="http://localhost/scandiweb_test/add-product"><button type="button">ADD</button></a>
-           <button type="button" id="mass-delete-btn" class="mass-delete">MASS DELETE</button>
+           <a href="<?=  BASE_URL ?>add-product"><button type="button">ADD</button></a>
+           <button type="button" id="delete-product-btn"  class="mass-delete">MASS DELETE</button>
         </div>
     </div>
 
@@ -25,7 +24,7 @@
 
     <!-- Cart List with 4 items per row -->
     <!-- Mass Delete Form -->
-<form action="<?= PUBLIC_PATH . DS ?>deleteproducts" id="product_form" method="POST" >
+<form action="<?= BASE_URL ?>product/deleteproducts" id="product_form" method="POST" >
     <div class="cart-list">
         <?php foreach ($_data as $product): ?>
             <div class="product-item">
@@ -34,6 +33,7 @@
                     name="products[]" 
                     value="<?= htmlspecialchars($product->getSku()) ?>" 
                     id="product-<?= htmlspecialchars($product->getSku()) ?>"
+                    class="delete-checkbox"
                 >
                 <div class="product-details">
                     <span><?= htmlspecialchars($product->getSku()) ?></span> <!-- SKU -->
@@ -53,6 +53,10 @@
         <div class="separatorFooter"></div>
         <p>Scandiweb Test assignment</p>
     </div>
-    <script src="<?= PUBLIC_PATH . DS ?>assets/js/deleteproducts.js"></script>
+    <script>
+    baseUrl = "<?= BASE_URL ?>";
+    </script>
+    <script src="<?= PUBLIC_PATH ?>assets/js/deleteproducts.js"></script>
 </body>
 </html>
+    
