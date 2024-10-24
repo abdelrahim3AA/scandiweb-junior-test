@@ -1,4 +1,5 @@
 <?php
+
 // Define the directory separator if not already defined
 if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
@@ -19,8 +20,3 @@ define('PUBLIC_PATH', BASE_URL . 'Public/');
 // Optional: Set error reporting for debugging (remove in production)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-if(!defined('DS')) {
-    define('DS', DIRECTORY_SEPARATOR); 
-}
-
-
