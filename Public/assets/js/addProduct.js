@@ -8,35 +8,43 @@ document.addEventListener('DOMContentLoaded', function () {
     const errorMessageDiv = document.getElementById('error-message');
     const skuError = document.getElementById('skuError'); // Element for SKU errors
 
+    // Initialize the form to hide all fields
+    sizeField.classList.add('hidden');
+    dimensionField.classList.add('hidden');
+    weightField.classList.add('hidden');
+
     // Show/Hide fields based on selected product type
     productType.addEventListener('change', function () {
+        // Disable the dropdown for a short time to prevent rapid changes
+        //productType.disabled = true; // Disable the dropdown
+
         // Remove 'required' from all fields
         document.querySelectorAll('input[required]').forEach(input => input.removeAttribute('required'));
 
-        // Hide all fields
+        // Hide all fields initially
         sizeField.classList.add('hidden');
         dimensionField.classList.add('hidden');
         weightField.classList.add('hidden');
 
-        // Add 'required' for the appropriate field based on selected type
-        switch (this.value) {
-            case 'dvd':
-                sizeField.classList.remove('hidden');
-                document.getElementById('size').setAttribute('required', 'required');
-                break;
-            case 'furniture':
-                dimensionField.classList.remove('hidden');
-                document.getElementById('height').setAttribute('required', 'required');
-                document.getElementById('width').setAttribute('required', 'required');
-                document.getElementById('length').setAttribute('required', 'required');
-                break;
-            case 'book':
-                weightField.classList.remove('hidden');
-                document.getElementById('weight').setAttribute('required', 'required');
-                break;
+        // Show the appropriate field based on selected type
+        if (this.value === 'DVD') {
+            sizeField.classList.remove('hidden');
+            document.getElementById('size').setAttribute('required', 'required');
+        } else if (this.value === 'Furniture') {
+            dimensionField.classList.remove('hidden');
+            document.getElementById('height').setAttribute('required', 'required');
+            document.getElementById('width').setAttribute('required', 'required');
+            document.getElementById('length').setAttribute('required', 'required');
+        } else if (this.value === 'Book') {
+            weightField.classList.remove('hidden');
+            document.getElementById('weight').setAttribute('required', 'required');
         }
+
+        // Re-enable the dropdown after a delay
+        setTimeout(() => {
+            productType.disabled = false; // Re-enable the dropdown after the delay
+        }, 0);
     });
-    git remote add origin https://github.com/abdelrahim3AA/scandiweb-product-management.git
 
     // Handle form submission with fetch API
     saveBtn.addEventListener('click', async function (event) {
@@ -85,8 +93,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-     // Function to validate inputs
-     function validateInputs() {
+    // Function to validate inputs
+    function validateInputs() {
         let isValid = true;
         hideErrorMessages(); // Hide previous error messages
 
@@ -112,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Validate size if product is DVD
         const size = parseFloat(document.getElementById('size').value);
-        if (productType.value === 'dvd' && (isNaN(size) || size <= 0)) {
+        if (productType.value === 'DVD' && (isNaN(size) || size <= 0)) {
             displayErrorMessage('Please, provide a valid size for DVD.'); // Error message for invalid size
             isValid = false;
         }
@@ -121,14 +129,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const height = parseFloat(document.getElementById('height').value);
         const width = parseFloat(document.getElementById('width').value);
         const length = parseFloat(document.getElementById('length').value);
-        if (productType.value === 'furniture' && (isNaN(height) || height <= 0 || isNaN(width) || width <= 0 || isNaN(length) || length <= 0)) {
+        if (productType.value === 'Furniture' && (isNaN(height) || height <= 0 || isNaN(width) || width <= 0 || isNaN(length) || length <= 0)) {
             displayErrorMessage('Please, provide valid dimensions for furniture.'); // Error message for invalid dimensions
             isValid = false;
         }
 
         // Validate weight if product is Book
         const weight = parseFloat(document.getElementById('weight').value);
-        if (productType.value === 'book' && (isNaN(weight) || weight <= 0)) {
+        if (productType.value === 'Book' && (isNaN(weight) || weight <= 0)) {
             displayErrorMessage('Please, provide a valid weight for the book.'); // Error message for invalid weight
             isValid = false;
         }
@@ -140,12 +148,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function displayErrorMessage(message) {
         errorMessageDiv.textContent = message;
         errorMessageDiv.style.display = 'block';
-    }
-
-    // Function to display SKU error messages next to SKU field
-    function displaySkuError(message) {
-        skuError.textContent = message;
-        skuError.style.display = 'block';
     }
 
     // Function to hide all error messages
