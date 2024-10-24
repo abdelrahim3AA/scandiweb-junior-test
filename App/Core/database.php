@@ -14,11 +14,11 @@ class Database
     {
         try {
             $this->connection = new PDO(
-                'mysql:host=localhost;dbname=scandiweb',
-                'root',
-                '',
+                'mysql:host=sql105.byethost18.com;dbname=b18_37538326_scandiwebDB',
+                'b18_37538326',
+                'randoM2003##@14',
                 [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,  // Enable exception mode
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Enable exception mode
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 ]
             );
