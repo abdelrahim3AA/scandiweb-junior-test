@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Product</title>
-    <link rel="stylesheet" href="<?= PUBLIC_PATH . DS ?>assets/css/addproduct.css">
+    <link rel="stylesheet" href="<?= PUBLIC_PATH ?>assets/css/addproduct.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
@@ -20,7 +19,7 @@
     <div class="separator"></div>
     <div id="error-message" class="error-message"></div>
 
-    <form id="product_form" data-action="<?= BASE_URL ?>/product/store" method="post">
+    <form id="product_form" data-action="<?= BASE_URL ?>product/store" method="post">
         <div class="main-btns">
             <div class="form-group">
                 <label for="sku">SKU</label>
@@ -42,9 +41,9 @@
                 <label for="productType">Type Switcher</label>
                 <select id="productType" name="productType" required>
                     <option value="">Type Switcher</option>
-                    <option value="dvd">DVD-disk</option>
-                    <option value="furniture">Furniture</option>
-                    <option value="book">Book</option>
+                    <option value="DVD" id="DVD">DVD-disk</option>
+                    <option value="Furniture" id="Furniture">Furniture</option>
+                    <option value="Book" id="Book">Book</option>
                 </select>
             </div>
 
@@ -89,6 +88,6 @@
 <script>
     baseUrl = "<?= BASE_URL ?>";
 </script>
-<script src="<?= PUBLIC_PATH . DS ?>assets/js/addproduct.js"></script>
+<script src="<?= PUBLIC_PATH  ?>assets/js/addproduct.js"></script>
 </body>
 </html>
