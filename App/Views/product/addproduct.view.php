@@ -41,7 +41,7 @@
                 <label for="productType">Type Switcher</label>
                 <select id="productType" name="productType" required>
                     <option value="">Type Switcher</option>
-                    <option value="DVD" id="DVD">DVD-disk</option>
+                    <option value="DVD" id="DVD">DVD</option>
                     <option value="Furniture" id="Furniture">Furniture</option>
                     <option value="Book" id="Book">Book</option>
                 </select>
