@@ -26,24 +26,21 @@ document.addEventListener('DOMContentLoaded', function () {
         dimensionField.classList.add('hidden');
         weightField.classList.add('hidden');
 
-        // Show the appropriate field based on selected type
-        if (this.value === 'DVD') {
+        const selectedType = this.value;
+        if (selectedType === 'DVD') {
             sizeField.classList.remove('hidden');
-            document.getElementById('size').setAttribute('required', 'required');
-        } else if (this.value === 'Furniture') {
+            document.getElementById('size').required = true;
+        } else if (selectedType === 'Furniture') {
             dimensionField.classList.remove('hidden');
-            document.getElementById('height').setAttribute('required', 'required');
-            document.getElementById('width').setAttribute('required', 'required');
-            document.getElementById('length').setAttribute('required', 'required');
-        } else if (this.value === 'Book') {
+            setFieldsRequired(['height', 'width', 'length']);
+        } else if (selectedType === 'Book') {
             weightField.classList.remove('hidden');
-            document.getElementById('weight').setAttribute('required', 'required');
+            document.getElementById('weight').required = true;
         }
-
-        // Re-enable the dropdown after a delay
-        setTimeout(() => {
-            productType.disabled = false; // Re-enable the dropdown after the delay
-        }, 0);
+        // // Re-enable the dropdown after a delay
+        // setTimeout(() => {
+        //     productType.disabled = false; // Re-enable the dropdown after the delay
+        // }, 0);
     });
 
     // Handle form submission with fetch API
